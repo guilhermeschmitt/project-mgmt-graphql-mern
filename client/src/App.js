@@ -7,6 +7,7 @@ import {
 
 import Header from './components/Header';
 import Clients from './components/Clients';
+import AddClientModal from './components/AddClientModal';
 
 //SERVE PRA TIRAR OS WARNINGS DO CONSOLE QUANDO USA O UPDATE CACHE DA MUTATION
 //SERVE PRA ESSE CASO QUE POSSUI POUCOS TIPOS, TEM QUE VER SE POSSUI UMA FORMA MELHOR DE SER FEITA
@@ -40,6 +41,7 @@ function App() {
     <ApolloProvider client={client}>
       <Header />
       <div className="container">
+        <AddClientModal />
         <Clients />
       </div>
     </ApolloProvider>
