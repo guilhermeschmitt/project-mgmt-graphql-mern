@@ -1,17 +1,15 @@
-import { Modal as FlowBiteModal, Button } from 'flowbite-react';
+import { Modal as FlowbiteModal, Button } from 'flowbite-react';
 
 export default function Modal(props) {
   return (
-    <FlowBiteModal show={props.show}>
-      <FlowBiteModal.Header>
+    <FlowbiteModal show={props.show} onClose={props.onClose}>
+      <FlowbiteModal.Header>
         {props.header}
-      </FlowBiteModal.Header>
-      <FlowBiteModal.Body>
-
-          {props.children}
-
-      </FlowBiteModal.Body>
-      <FlowBiteModal.Footer>
+      </FlowbiteModal.Header>
+      <FlowbiteModal.Body>
+        {props.children}
+      </FlowbiteModal.Body>
+      <FlowbiteModal.Footer>
         <Button
           color="gray"
           onClick={props.onClose}
@@ -21,7 +19,7 @@ export default function Modal(props) {
         <Button onClick={props.onSubmit}>
           Submit
         </Button>
-      </FlowBiteModal.Footer>
-    </FlowBiteModal>
+      </FlowbiteModal.Footer>
+    </FlowbiteModal>
   )
 }

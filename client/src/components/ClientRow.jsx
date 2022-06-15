@@ -1,3 +1,4 @@
+import { Table } from 'flowbite-react';
 import { FaTrash } from 'react-icons/fa';
 import { useMutation } from '@apollo/client';
 
@@ -22,21 +23,21 @@ export default function ClientRow({ client }) {
   })
 
   return (
-    <tr>
-      <td>
+    <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+      <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
         {client.name}
-      </td>
-      <td>
+      </Table.Cell>
+      <Table.Cell>
         {client.email}
-      </td>
-      <td>
+      </Table.Cell>
+      <Table.Cell>
         {client.phone}
-      </td>
-      <td>
+      </Table.Cell>
+      <Table.Cell>
         <button onClick={deleteClient}>
           <FaTrash />
         </button>
-      </td>
-    </tr>
+      </Table.Cell>
+    </Table.Row>
   )
 }
