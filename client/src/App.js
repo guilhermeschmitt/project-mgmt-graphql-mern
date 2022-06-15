@@ -4,11 +4,35 @@ import {
   InMemoryCache
 } from '@apollo/client';
 
+
 import Header from './components/Header';
+import Clients from './components/Clients';
+
+//SERVE PRA TIRAR OS WARNINGS DO CONSOLE QUANDO USA O UPDATE CACHE DA MUTATION
+//SERVE PRA ESSE CASO QUE POSSUI POUCOS TIPOS, TEM QUE VER SE POSSUI UMA FORMA MELHOR DE SER FEITA
+const cache = new InMemoryCache({
+  typePolicies: {
+    Query: {
+      fields: {
+        clients: {
+          merge(existing, incoming) {
+            return incoming;
+          },
+        },
+        projects: {
+          merge(existing, incoming) {
+            return incoming;
+          },
+        },
+      },
+    },
+  },
+});
+
 
 const client = new ApolloClient({
   uri: 'http://localhost:5000/graphql',
-  cache: new InMemoryCache()
+  cache: cache
 });
 
 function App() {
@@ -16,9 +40,7 @@ function App() {
     <ApolloProvider client={client}>
       <Header />
       <div className="container">
-        <h1>
-          Hello world
-        </h1>
+        <Clients />
       </div>
     </ApolloProvider>
   );
