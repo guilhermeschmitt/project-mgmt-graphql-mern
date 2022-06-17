@@ -1,7 +1,10 @@
-import logo from './assets/logo.png';
 import { Navbar } from 'flowbite-react';
-import AddClientModal from './AddClientModal';
 import { Link } from 'react-router-dom';
+
+import logo from './assets/logo.png';
+
+import AddClientModal from './AddClientModal';
+import AddProjectModal from './AddProjectModal';
 
 export default function Header() {
   return (
@@ -20,8 +23,10 @@ export default function Header() {
           </Navbar.Brand>
         </Link>
         <div className="flex md:order-2">
-          <AddClientModal />
-          <Navbar.Toggle />
+          <div className='mr-3'>
+            <AddClientModal />
+          </div>
+          <AddProjectModal />
         </div>
         <Navbar.Collapse>
           <Link to="/projects">

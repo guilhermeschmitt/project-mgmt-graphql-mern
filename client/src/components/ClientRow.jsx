@@ -3,6 +3,8 @@ import { FaTrash } from 'react-icons/fa';
 import { useMutation } from '@apollo/client';
 
 import { GET_CLIENTS } from '../queries/clientQueries';
+import { GET_PROJECTS } from '../queries/projectQueries';
+
 import { DELETE_CLIENT } from '../mutations/clientMutations';
 
 export default function ClientRow({ client }) {
@@ -11,15 +13,20 @@ export default function ClientRow({ client }) {
     variables: {
       id: client.id
     },
-    update(cache, { data: { deleteClient } }) {
-      const { clients } = cache.readQuery({ query: GET_CLIENTS })
-      cache.writeQuery({
-        query: GET_CLIENTS,
-        data: {
-          clients: clients.filter(client => client.id !== deleteClient.id)
-        }
-      })
-    }
+    refetchQueries: [
+      { query: GET_CLIENTS },
+      { query: GET_PROJECTS }
+    ]
+    //AGORA QUE TO DELETANDO OS PROJETOS ASSOCIADOS AO CLIENTE, É MAIS RÁPIDO FAZER UM REFETCH
+    // update(cache, { data: { deleteClient } }) {
+    //   const { clients } = cache.readQuery({ query: GET_CLIENTS })
+    //   cache.writeQuery({
+    //     query: GET_CLIENTS,
+    //     data: {
+    //       clients: clients.filter(client => client.id !== deleteClient.id)
+    //     }
+    //   })
+    // }
   })
 
   return (

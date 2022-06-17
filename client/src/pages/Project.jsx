@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import { GET_PROJECT } from '../queries/projectQueries';
 
 import Spinner from '../components/Spinner';
+import EditProjectModal from '../components/EditProjectModal';
+import DeleteProjectButton from '../components/DeleteProjectButton';
 
 export default function Project() {
   const { id } = useParams();
@@ -21,14 +23,23 @@ export default function Project() {
 
   return (
     <div>
-      <div className='flex items-baseline'>
-        <h5 className="text-2xl mr-4 font-bold tracking-tight text-gray-900 dark:text-white">
-          {project.name}
-        </h5>
-        <p className={`${statusClass} rounded-2xl py-1 px-2 text-xs font-semibold`}>
-          {project.status}
-        </p>
+      <div className='flex justify-between'>
+        <div className='flex items-baseline'>
+          <h5 className="text-2xl mr-4 font-bold tracking-tight text-gray-900 dark:text-white">
+            {project.name}
+          </h5>
+          <p className={`${statusClass} rounded-2xl py-1 px-2 text-xs font-semibold`}>
+            {project.status}
+          </p>
+        </div>
+        <div className='flex items-center'>
+          <div className='mr-3'>
+            <EditProjectModal project={project} />
+          </div>
+          <DeleteProjectButton projectId={id} />
+        </div>
       </div>
+
       <p className="mb-5 text-base text-gray-500 dark:text-gray-400 sm:text-lg">
         {project.description}
       </p>

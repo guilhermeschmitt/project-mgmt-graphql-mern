@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { FaUser } from 'react-icons/fa';
 import { useMutation } from '@apollo/client';
+import { Button, Label, TextInput } from 'flowbite-react';
 
 import Modal from "./Modal";
-import { ADD_CLIENT } from '../mutations/clientMutations';
 import { GET_CLIENTS } from '../queries/clientQueries';
-import { Button, Label, TextInput } from 'flowbite-react';
+import { ADD_CLIENT } from '../mutations/clientMutations';
 
 export default function AddClientModal() {
 
@@ -46,14 +46,13 @@ export default function AddClientModal() {
 
     addClient(name, email, phone);
     resetModal();
-
   }
 
   return (
     <>
       <Button onClick={() => setShowModal(true)}>
         <FaUser className='icon mr-2' />
-        <div>Add Client</div>
+        <p>Add Client</p>
       </Button>
       <Modal
         show={showModal}
