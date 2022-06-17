@@ -3,11 +3,16 @@ import {
   ApolloClient,
   InMemoryCache
 } from '@apollo/client';
-
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Clients from './components/Clients';
+
+import Home from './pages/Home';
+import About from './pages/About';
+import Project from './pages/Project';
+import NotFound from './pages/NotFound';
+import Projects from './pages/Projects';
 
 //SERVE PRA TIRAR OS WARNINGS DO CONSOLE QUANDO USA O UPDATE CACHE DA MUTATION
 //SERVE PRA ESSE CASO QUE POSSUI POUCOS TIPOS, TEM QUE VER SE POSSUI UMA FORMA MELHOR DE SER FEITA
@@ -30,7 +35,6 @@ const cache = new InMemoryCache({
   },
 });
 
-
 const client = new ApolloClient({
   uri: 'http://localhost:5000/graphql',
   cache: cache
@@ -39,11 +43,19 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Header />
-      <div className="container">
-        <Clients />
-      </div>
-      <Footer />
+      <Router>
+        <Header />
+        <div className="main-container">
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='*' element={<NotFound />} />
+            <Route path='/projects' element={<Projects />} />
+            <Route path='/projects/:id' element={<Project />} />
+            <Route path='/about' element={<About />} />
+          </Routes>
+        </div>
+        <Footer />
+      </Router>
     </ApolloProvider>
   );
 }

@@ -52,7 +52,7 @@ export default function AddClientModal() {
   return (
     <>
       <Button onClick={() => setShowModal(true)}>
-        <FaUser className='icon' />
+        <FaUser className='icon mr-2' />
         <div>Add Client</div>
       </Button>
       <Modal
